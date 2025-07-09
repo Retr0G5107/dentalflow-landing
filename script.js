@@ -118,7 +118,7 @@ function handleLeadSubmit(e) {
     // Redirect to Calendly after 2 seconds
     setTimeout(() => {
         // Replace with your actual Calendly link
-        window.location.href = 'https://calendly.com/dentalflow/demo';
+        window.location.href = 'https://calendly.com/automatix-studio/dentalflow-demo';
     }, 2000);
 }
 
@@ -183,7 +183,7 @@ function showFormSuccess() {
 // CTA Button Functions
 function bookDemo() {
     // Replace with your actual Calendly link
-    window.open('https://calendly.com/dentalflow/demo', '_blank');
+    window.open('https://calendly.com/automatix-studio/dentalflow-demo', '_blank');
 }
 
 function selectPlan(plan) {
@@ -192,7 +192,7 @@ function selectPlan(plan) {
     
     if (plan === 'enterprise') {
         // For enterprise, go to contact form or Calendly
-        window.location.href = 'https://calendly.com/dentalflow/enterprise';
+        window.location.href = 'https://calendly.com/automatix-studio/dentalflow-demo';
     } else {
         // For other plans, show lead form
         showLeadForm();
