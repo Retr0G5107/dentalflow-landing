@@ -326,3 +326,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 100);
     }
 });
+// Google Analytics Events Tracking
+function trackEvent(eventName, parameters = {}) {
+  if (typeof gtag !== 'undefined') {
+    gtag('event', eventName, parameters);
+  }
+}
+
+// Track form submissions
+document.addEventListener('DOMContentLoaded', function() {
+  // Track demo form submission
+  const demoForm = document.querySelector('.demo-form');
+  if (demoForm) {
+    demoForm.addEventListener('submit', function() {
+      trackEvent('demo_request', {
+        event_category: 'lead_generation',
+        event_label: 'hero_form'
+      });
+    });
+  }
+
+  // Track CTA button clicks
+  const ctaButtons = document.querySelectorAll('.cta-btn');
+  ctaButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      trackEvent('cta_click', {
+        event_category: 'engagement',
+        event_label: this.textContent.trim()
+      });
+    });
+  });
+
+  // Track pricing button clicks
+  const pricingButtons = document.querySelectorAll('.pricing-btn');
+  pricingButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const planName = this.closest('.pricing-card').querySelector('h3').textContent;
+      trackEvent('pricing_click', {
+        event_category: 'conversion',
+        event_label: planName
+      });
+    });
+  });
+
+  // Track scroll depth
+  let maxScroll = 0;
+  window.addEventListener('scroll', function() {
+    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    
+    if (scrollPercent > maxScroll && scrollPercent % 25 === 0) {
+      maxScroll = scrollPercent;
+      trackEvent('scroll_depth', {
+        event_category: 'engagement',
+        event_label: scrollPercent + '%'
+      });
+    }
+  });
+});
